@@ -1,13 +1,29 @@
 import React from 'react';
 import './App.css';
-import './config.js';
-import './helper';
+import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
 
+const createMarvelString = (baseUrl, endpoint, {inputValue}, myApiKey) => baseUrl + endpoint + encodeURI(inputValue) + myApiKey
+const baseURL = "https://gateway.marvel.com/v1/public/";
+const myApiKey = "&apikey=6d1f112aae8581fdaca4b89efca28a99";
+
+const marvelEvents = createMarvelString(baseURL, "events?nameStartsWith=", {inputValue}, myApiKey);
+const marvelComics = createMarvelString(baseURL, "comics?titleStartsWith=", {inputValue}, myApiKey);
+const marvelCharacters = createMarvelString(baseURL, "characters?nameStartsWith=", {inputValue}, myApiKey);
+
+let FetchMarvelEvents = function fetchMarvelEvents(input){
+  fetch(marvelEvents)
+  .then((res) =>{
+    return res.json()
+  })
+  .then(res => {
+    
+  })
+}
 class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      title: 'Marvel Search Engine 2.0'
+      title: 'Marvel Search Engine 2.0',
     };
   }
   render(){
@@ -15,7 +31,7 @@ class App extends React.Component{
       <div>
         <h1 className="App-header">{this.state.title}</h1>
         <div className="do-it-all">
-          <InputKickoff className="api-input" input={this.state.inputValue} handleChange={this.handleChange}/>
+          <InputKickoff className="api-input"/>
         </div>
       </div>
     )

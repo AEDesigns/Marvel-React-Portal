@@ -1,5 +1,7 @@
 import React from 'react';
 import './App.css';
+import './config.js';
+import './helper';
 
 class App extends React.Component{
   constructor(props){
@@ -24,25 +26,27 @@ class InputKickoff extends React.Component{
   constructor(props){
     super(props);
     this.state={
-      input: ''
+      inputValue: ''
     };
     this.handleChange = this.handleChange.bind(this);
-    this.apiKickoff = this.apiKickoff.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   handleChange(event) {
     this.setState({
       inputValue: event.target.value
       });
     };
-
-  apiKickoff({this.state.input}){
-
-  }
+    handleSubmit(event){
+      console.log(this.state.inputValue);
+      event.preventDefault();
+    }
   render() {
     return (
       <div>
-        <input value={this.props.input} onChange={this.props.handleChange}/>
-        <button className="api-kickoff">Search the Database</button>
+        <form>
+          <input type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder="With Great Power..."/>
+          <button className="api-kickoff" type="submit" onClick={this.handleSubmit}>Search The Multiverse</button>
+        </form>
       </div>
     );
   }

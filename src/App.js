@@ -1,7 +1,9 @@
 import React from 'react';
 import './App.css';
 import CustomCard from './components/Card';
-
+const createMarvelString = (baseUrl, endpoint, inputValue, myApiKey) => baseUrl + endpoint + encodeURI(inputValue) + myApiKey
+const baseURL = "https://gateway.marvel.com/v1/public/"
+const myApiKey = "&apikey=6d1f112aae8581fdaca4b89efca28a99";
 
 class App extends React.Component{
   constructor(props){
@@ -22,8 +24,24 @@ class App extends React.Component{
       });
     };
     handleSubmit(event){
-      apiKickOff(this.state.inputValue);
+      this.fetchInput(this.state.inputValue);
       event.preventDefault();
+    }
+    fetchInput(input){
+      var marvelEvents = createMarvelString(baseURL, "events?nameStartsWith=", input, myApiKey);
+      fetch(marvelEvents)
+      .then((res) => {
+        return res.json()
+      })
+      .then(res => {
+        this.setState({
+          eventsApi: res.data.results
+        });
+        //fix fetch to only accept what I want to accept (events, comics, characters)
+      })
+      .catch((err) => {
+        console.log(err)
+      });
     }
   render(){
     return(
@@ -35,32 +53,15 @@ class App extends React.Component{
             <button className="api-kickoff" type="submit" onClick={this.handleSubmit}>Search The Multiverse</button>
           </form>
         </div>
-        {this.state.eventsApi.map((e, index) => <CustomCard key={index} title={'ass'} img='https://via.placeholder.com/300x150' body={'cory'}/>)}
+        {this.state.eventsApi.map((e, index) => 
+        {
+          console.log(e)
+          return <CustomCard key={index} title={e.title} img={e.thumbnail.path}  body={e.description}/>
+          })}
       </div>
     )
   }
 }
 
-const createMarvelString = (baseUrl, endpoint, inputValue, myApiKey) => baseUrl + endpoint + encodeURI(inputValue) + myApiKey
-const baseURL = "https://gateway.marvel.com/v1/public/"
-const myApiKey = "&apikey=6d1f112aae8581fdaca4b89efca28a99";
-
-function apiKickOff(inputValue){
-  var marvelEvents = createMarvelString(baseURL, "events?nameStartsWith=", inputValue, myApiKey);
-  fetch(marvelEvents)
-  .then((res) => {
-    return res.json()
-  })
-  .then(res => {
-    console.log(res.data.results)
-    const eventsResults = res.data.results;
-    this.setState({
-    })
-  })
-  .catch((err) => {
-    console.log(err);
-});
-
-}
 
 export default App;

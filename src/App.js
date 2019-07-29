@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-//import { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle, Button} from 'reactstrap';
+import CustomCard from './components/Card';
 
 
 class App extends React.Component{
@@ -19,8 +19,7 @@ class App extends React.Component{
   handleChange(event) {
     this.setState({
       inputValue: event.target.value
-      }
-      );
+      });
     };
     handleSubmit(event){
       apiKickOff(this.state.inputValue);
@@ -31,11 +30,12 @@ class App extends React.Component{
       <div>
         <h1 className="App-header">{this.state.title}</h1>
         <div className="do-it-all">
-        <form>
-          <input type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder="With Great Power..."/>
-          <button className="api-kickoff" type="submit" onClick={this.handleSubmit}>Search The Multiverse</button>
-        </form>
+          <form>
+            <input type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder="With Great Power..."/>
+            <button className="api-kickoff" type="submit" onClick={this.handleSubmit}>Search The Multiverse</button>
+          </form>
         </div>
+        {this.state.eventsApi.map((e, index) => <CustomCard key={index} title={'ass'} img='https://via.placeholder.com/300x150' body={'cory'}/>)}
       </div>
     )
   }
@@ -47,11 +47,19 @@ const myApiKey = "&apikey=6d1f112aae8581fdaca4b89efca28a99";
 
 function apiKickOff(inputValue){
   var marvelEvents = createMarvelString(baseURL, "events?nameStartsWith=", inputValue, myApiKey);
-
   fetch(marvelEvents)
   .then((res) => {
-    console.log(res.data)
+    return res.json()
   })
+  .then(res => {
+    console.log(res.data.results)
+    const eventsResults = res.data.results;
+    this.setState({
+    })
+  })
+  .catch((err) => {
+    console.log(err);
+});
 
 }
 

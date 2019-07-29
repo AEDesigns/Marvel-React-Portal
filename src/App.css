@@ -8,10 +8,24 @@
   color: #ed1d24;
 }
 
+.api-header {
+  display: inline-block;
+}
+
 .api-input{
   position: relative;
   display: block;
   margin : 0 auto;
+}
+
+.do-it-all{
+  margin: 0 auto;
+  width: 450px;
+}
+
+.EventsDiv{
+  float: left;
+  padding-left: 10px;
 }
 
 @keyframes App-logo-spin {

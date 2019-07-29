@@ -1,17 +1,17 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle} from 'reactstrap';
+import '../App.css';
 
 class CustomCard extends React.Component{
     render(){
         return(
             <div>
-                <Card>
-                    <CardImg top width="100%" src={this.props.img} alt={this.props.title} />
-                    <CardBody>
-                    <CardTitle>{this.props.title}</CardTitle>
-                    <CardText>{this.props.body}</CardText>
-                    </CardBody>
-                </Card>
+                <div class="card" style={{width: "18rem"}} className="EventsDiv">
+                <img class="card-img-top" src={this.props.img + "/standard_medium.jpg"} alt={"The Cover Photo for the Comic series " + this.props.title}/>
+                <div class="card-body">
+                    <h5 class="card-title">{this.props.title}</h5>
+                    <p class="card-text">{this.props.body}</p>
+                </div>
+                </div>
             </div>
         )
     }

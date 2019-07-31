@@ -75,26 +75,26 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <h1 className="App-header">{this.state.title}</h1>
+        <h1 className="App-header-1">{this.state.title}</h1>
         <div className="do-it-all">
           <form>
             <input className="Marvel-Input" type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder="With Great Power..." />
             <button className="api-kickoff Marvel-Input" type="submit" onClick={this.handleSubmit}>Search The Multiverse</button>
           </form>
         </div>
-        <h2 className="App-header api-header">Marvel Characters</h2>
+        <h2 className="App-header-2 api-header">Marvel Characters</h2>
         <div class="row">
           {this.state.charactersApi.map((e, index) => {
             return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
           })}
         </div>
-        <h2 className="App-header api-header">Marvel Events</h2>
+        <h2 className="App-header-2 api-header">Marvel Events</h2>
         <div class="row">
           {this.state.eventsApi.map((e, index) => {
             return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
           })}
         </div>
-        <h2 className="App-header api-header">Marvel Comics</h2>
+        <h2 className="App-header-2 api-header">Marvel Comics</h2>
         <div class="row">
           {this.state.comicsApi.map((e, index) => {
             return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />

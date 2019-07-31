@@ -3,14 +3,15 @@
   text-align: center;
 }
 
-.App-header {
+.App-header-1 {
   text-align: center;
   font-size: calc(10px + 2vmin);
   color: #ed1d24;
 }
 
-.api-header {
-  display: inline-block;
+.App-header-2{
+  font-size: calc(10px + 2vmin);
+  color: #ed1d24;
 }
 
 .api-input {
@@ -30,6 +31,19 @@
   float: left;
   padding-left: 10px;
 }
+
+.custom-overflow{
+  white-space: nowrap; 
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-overflow-2{
+  white-space: normal;
+  word-break: break-all;
+}
+
 
 @keyframes App-logo-spin {
   from {

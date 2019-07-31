@@ -5,8 +5,8 @@ const createMarvelString = (baseUrl, endpoint, inputValue, myApiKey) => baseUrl 
 const baseURL = "https://gateway.marvel.com/v1/public/"
 const myApiKey = "&apikey=6d1f112aae8581fdaca4b89efca28a99";
 
-class App extends React.Component{
-  constructor(props){
+class App extends React.Component {
+  constructor(props) {
     super(props);
     this.state = {
       title: 'Marvel Search Engine 2.0',
@@ -21,17 +21,17 @@ class App extends React.Component{
   handleChange(event) {
     this.setState({
       inputValue: event.target.value
-      });
-    };
-    handleSubmit(event){
-      this.fetchInput(this.state.inputValue);
-      event.preventDefault();
-    }
-    fetchInput(input){
-      const marvelEvents = createMarvelString(baseURL, "events?nameStartsWith=", input, myApiKey);
-      const marvelComics = createMarvelString(baseURL, "comics?titleStartsWith=", input, myApiKey);
-      const marvelCharacters = createMarvelString(baseURL,"characters?nameStartsWith=", input, myApiKey);
-      fetch(marvelEvents)
+    });
+  };
+  handleSubmit(event) {
+    this.fetchInput(this.state.inputValue);
+    event.preventDefault();
+  }
+  fetchInput(input) {
+    const marvelEvents = createMarvelString(baseURL, "events?nameStartsWith=", input, myApiKey);
+    const marvelComics = createMarvelString(baseURL, "comics?titleStartsWith=", input, myApiKey);
+    const marvelCharacters = createMarvelString(baseURL, "characters?nameStartsWith=", input, myApiKey);
+    fetch(marvelEvents)
       .then((res) => {
         return res.json()
       })
@@ -44,7 +44,7 @@ class App extends React.Component{
       .catch((err) => {
         console.log(err)
       });
-      fetch(marvelComics)
+    fetch(marvelComics)
       .then((res) => {
         return res.json()
       })
@@ -57,7 +57,7 @@ class App extends React.Component{
       .catch((err) => {
         console.log(err)
       });
-      fetch(marvelCharacters)
+    fetch(marvelCharacters)
       .then((res) => {
         return res.json()
       })
@@ -70,39 +70,36 @@ class App extends React.Component{
       .catch((err) => {
         console.log(err)
       });
-    }
-    
-  render(){
-    return(
+  }
+
+  render() {
+    return (
       <div>
         <h1 className="App-header">{this.state.title}</h1>
         <div className="do-it-all">
           <form>
-            <input  className="Marvel-Input" type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder="With Great Power..."/>
+            <input className="Marvel-Input" type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder="With Great Power..." />
             <button className="api-kickoff Marvel-Input" type="submit" onClick={this.handleSubmit}>Search The Multiverse</button>
           </form>
         </div>
-        <div>
-          <h2 className="App-header api-header">Marvel Comics</h2>
-        </div>
-        {this.state.comicsApi.map((e, index) => 
-          {
-            return <CustomCard key={index} title={e.title} img={e.thumbnail.path}  body={e.description}/>
-            })}
-        <div>
-          <h2 className="App-header api-header">Marvel Characters</h2>
-        </div>
-        {this.state.charactersApi.map((e, index) => 
-          {
-            return <CustomCard key={index} title={e.title} img={e.thumbnail.path}  body={e.description}/>
-            })}
-        <div >
-          <h2 className="App-header api-header">Marvel Events</h2>
-        </div>
-        {this.state.eventsApi.map((e, index) => 
-        {
-          return <CustomCard key={index} title={e.title} img={e.thumbnail.path}  body={e.description}/>
+        <h2 className="App-header api-header">Marvel Characters</h2>
+        <div class="row">
+          {this.state.charactersApi.map((e, index) => {
+            return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
           })}
+        </div>
+        <h2 className="App-header api-header">Marvel Events</h2>
+        <div class="row">
+          {this.state.eventsApi.map((e, index) => {
+            return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
+          })}
+        </div>
+        <h2 className="App-header api-header">Marvel Comics</h2>
+        <div class="row">
+          {this.state.comicsApi.map((e, index) => {
+            return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
+          })}
+        </div>
       </div>
     )
   }

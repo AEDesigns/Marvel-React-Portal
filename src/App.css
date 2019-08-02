@@ -25,7 +25,7 @@
   width: 450px;
 }
 
-/* Card Styles */
+/* Card Component Styles */
 
 .EventsDiv {
   float: left;
@@ -40,6 +40,7 @@
 }
 
 .custom-overflow-2{
+  text-overflow: clip;
   white-space: normal;
   word-break: break-all;
 }

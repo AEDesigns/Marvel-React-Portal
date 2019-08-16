@@ -3,7 +3,7 @@ import './App.css';
 import CustomCard from './components/Card';
 const createMarvelString = (baseUrl, endpoint, inputValue, myApiKey) => baseUrl + endpoint + encodeURI(inputValue) + myApiKey
 const baseURL = "https://gateway.marvel.com/v1/public/"
-const myApiKey = "&apikey=6d1f112aae8581fdaca4b89efca28a99";
+const myApiKey = getAKeyFromMarvel;
 
 class App extends React.Component {
   constructor(props) {

@@ -7,7 +7,25 @@ class Checkboxes extends React.Component {
         this.state = {
             Character: 'Search Characters',
             Events: 'Search Events',
-            Comics: 'Search Comics'
+            Comics: 'Search Comics',
+            characterBool: true,
+            eventBool: false,
+            comicBool: false
+        }
+
+        this.Charfunc = this.Charfunc.bind(this)
+    }
+
+    Charfunc() {
+        if (this.state.characterBool === true) {
+            this.setState({
+                characterBool: false
+            })
+        } else {
+            this.setState({
+                characterBool: true
+            })
+            console.log(this.state.characterBool)
         }
     }
 
@@ -16,7 +34,7 @@ class Checkboxes extends React.Component {
             <div className="container">
                 <div class="row">
                     <div>
-                        <input id="characters" type="checkbox" /><label class="labelly" for="characters">{this.state.Character}</label>
+                        <input id="characters" type="checkbox" onChange={this.Charfunc} /><label class="labelly" for="characters">{this.state.Character}</label>
                     </div>
                     <div>
                         <input id="comics" type="checkbox" label="Comics" /><label class="labelly" for="comics">{this.state.Events}</label>

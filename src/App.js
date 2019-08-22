@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import CustomCard from './components/Card';
 import Checkboxes from '../src/components/Checkbox';
+import AvengersLogo from './components/Logo'
 const createMarvelString = (baseUrl, endpoint, inputValue, myApiKey) => baseUrl + endpoint + encodeURI(inputValue) + myApiKey
 const baseURL = "https://gateway.marvel.com/v1/public/"
 const myApiKey = 1234569;
@@ -77,6 +78,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
+        <AvengersLogo />
         <h1 className="App-header-1">{this.state.title}</h1>
         <div className="do-it-all">
           <form>
@@ -85,25 +87,25 @@ class App extends React.Component {
           </form>
           <Checkboxes />
         </div>
-        <h2 className="App-header-2 api-header">Marvel Characters</h2>
+        <h2 className='App-header-2 app-head-2 api-header'>Marvel Characters</h2>
         <div class="row">
           {this.state.charactersApi.map((e, index) => {
             return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
           })}
         </div>
-        <h2 className="App-header-2 api-header">Marvel Events</h2>
+        <h2 className="App-header-3 app-head-3 api-header">Marvel Events</h2>
         <div class="row">
           {this.state.eventsApi.map((e, index) => {
             return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
           })}
         </div>
-        <h2 className="App-header-2 api-header">Marvel Comics</h2>
+        <h2 className="App-header-4 app-head-4 api-header">Marvel Comics</h2>
         <div class="row">
           {this.state.comicsApi.map((e, index) => {
             return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
           })}
         </div>
-      </div>
+      </div >
     )
   }
 }

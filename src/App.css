@@ -9,9 +9,10 @@
   color: #ed1d24;
 }
 
-.App-header-2 {
-  font-size: calc(10px + 2vmin);
-  color: #ed1d24;
+.App-header-2,
+.App-header-3,
+.App-header-4 {
+  display: none;
 }
 
 .api-input {
@@ -45,7 +46,30 @@
   word-break: break-all;
 }
 
+/* Checkboxes */
+.labelly {
+  padding-right: 20px;
+}
 
+.app-head-2,
+.app-head-3,
+.app-head-4 {
+  display: inline;
+  font-size: calc(10px + 2vmin);
+  color: #ed1d24;
+}
+
+/* Logo Styles */
+.Avengers-logo {
+  height: 50px;
+  width: 50px;
+  animation-name: App-logo-spin;
+  animation-duration: 5000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+/* Animations */
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -54,8 +78,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-
-.labelly {
-  padding-right: 20px;
 }

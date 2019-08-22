@@ -21,6 +21,7 @@ class Checkboxes extends React.Component {
             this.setState({
                 characterBool: false
             })
+            console.log(this.state.characterBool)
         } else {
             this.setState({
                 characterBool: true

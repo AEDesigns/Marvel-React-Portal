@@ -78,8 +78,15 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <AvengersLogo />
-        <h1 className="App-header-1">{this.state.title}</h1>
+        <div class="row">
+          <div className="col-2">
+            <AvengersLogo />
+          </div>
+          <div className="col-7">
+            <h1 className="App-header-1">{this.state.title}</h1>
+          </div>
+          <div className="col-3"></div>
+        </div>
         <div className="do-it-all">
           <form>
             <input className="Marvel-Input" type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder="With Great Power..." />
@@ -105,6 +112,9 @@ class App extends React.Component {
             return <CustomCard key={index} title={e.title} img={e.thumbnail.path} body={e.description} />
           })}
         </div>
+        <footer>
+          <div>Icons made by <a href="https://www.flaticon.com/authors/those-icons" title="Those Icons">Those Icons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+        </footer>
       </div >
     )
   }

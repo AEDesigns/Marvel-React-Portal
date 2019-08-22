@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 import CustomCard from './components/Card';
+import Checkboxes from '../src/components/Checkbox';
 const createMarvelString = (baseUrl, endpoint, inputValue, myApiKey) => baseUrl + endpoint + encodeURI(inputValue) + myApiKey
 const baseURL = "https://gateway.marvel.com/v1/public/"
-const myApiKey = getAKeyFromMarvel;
+const myApiKey = 1234569;
+
 
 class App extends React.Component {
   constructor(props) {
@@ -81,6 +83,7 @@ class App extends React.Component {
             <input className="Marvel-Input" type="text" value={this.state.inputValue} onChange={this.handleChange} placeholder="With Great Power..." />
             <button className="api-kickoff Marvel-Input" type="submit" onClick={this.handleSubmit}>Search The Multiverse</button>
           </form>
+          <Checkboxes />
         </div>
         <h2 className="App-header-2 api-header">Marvel Characters</h2>
         <div class="row">

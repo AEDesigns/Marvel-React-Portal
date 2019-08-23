@@ -5,7 +5,7 @@ import Checkboxes from '../src/components/Checkbox';
 import AvengersLogo from './components/Logo'
 const createMarvelString = (baseUrl, endpoint, inputValue, myApiKey) => baseUrl + endpoint + encodeURI(inputValue) + myApiKey
 const baseURL = "https://gateway.marvel.com/v1/public/"
-const myApiKey = 1234569;
+const myApiKey = "&apikey=6d1f112aae8581fdaca4b89efca28a99";
 
 
 class App extends React.Component {
@@ -16,7 +16,8 @@ class App extends React.Component {
       inputValue: '',
       eventsApi: [],
       comicsApi: [],
-      charactersApi: []
+      charactersApi: [],
+      loaderImg: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,17 +35,24 @@ class App extends React.Component {
     const marvelEvents = createMarvelString(baseURL, "events?nameStartsWith=", input, myApiKey);
     const marvelComics = createMarvelString(baseURL, "comics?titleStartsWith=", input, myApiKey);
     const marvelCharacters = createMarvelString(baseURL, "characters?nameStartsWith=", input, myApiKey);
+    this.setState({
+      loaderImg: true
+    })
     fetch(marvelEvents)
       .then((res) => {
         return res.json()
       })
       .then(res => {
         this.setState({
-          eventsApi: res.data.results
+          eventsApi: res.data.results,
+          loaderImg: false
         });
         //fix fetch to only accept what I want to accept (events, comics, characters)
       })
       .catch((err) => {
+        this.setState({
+          loaderImg: false
+        })
         console.log(err)
       });
     fetch(marvelComics)
